@@ -1,0 +1,26 @@
+# Ignore les fichiers et répertoires générés par npm
+/node_modules
+
+# Ignore les fichiers de logs
+*.log
+
+# Ignore les fichiers de configuration locaux
+.env
+
+# Ignore les fichiers de cache
+.cache
+
+# Ignore les fichiers de sauvegarde
+*.bak
+
+# Ignore les fichiers d'installation
+npm-debug.log
+
+# Ignore les fichiers de dépendances optionnelles
+optional-dependencies
+
+# Ignore les fichiers de dépendances de développement
+devDependencies
+
+# Ignore les fichiers système
+.DS_Store
