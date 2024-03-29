@@ -41,72 +41,9 @@ const getDefisAleatoires = async (req, res) => {
     }
 };
 
-// Fonction pour ajouter un défi
-const ajouterDefi = async (req, res) => {
-  try {
-    // Vérifier si l'utilisateur est administrateur (vous devez implémenter cette logique)
-    // Exemple de validation si l'utilisateur est administrateur
-    if (!req.user || !req.user.administrateur) {
-      return res.status(403).json({ message: 'Accès non autorisé, vous devez être administrateur' });
-    }
-    
-    const { titre, description, difficulte } = req.body;
-    const defi = new Defi({ titre, description, difficulte });
-    await defi.save();
-    res.status(201).json(defi);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-};
 
-// Fonction pour modifier un défi spécifique par son id
-const modifierDefi = async (req, res) => {
-  try {
-    // Vérifier si l'utilisateur est administrateur (vous devez implémenter cette logique)
-    // Exemple de validation si l'utilisateur est administrateur
-    if (!req.user || !req.user.administrateur) {
-      return res.status(403).json({ message: 'Accès non autorisé, vous devez être administrateur' });
-    }
-    
-    const { id } = req.params;
-    const { titre, description, difficulte } = req.body;
-    const defi = await Defi.findByIdAndUpdate(id, { titre, description, difficulte }, { new: true });
-    if (!defi) {
-      return res.status(404).json({ message: 'Défi non trouvé' });
-    }
-    res.json(defi);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-};
-
-// Fonction pour supprimer un défi par son id
-const supprimerDefi = async (req, res) => {
-  try {
-    // Vérifier si l'utilisateur est administrateur (vous devez implémenter cette logique)
-    // Exemple de validation si l'utilisateur est administrateur
-    if (!req.user || !req.user.administrateur) {
-      return res.status(403).json({ message: 'Accès non autorisé, vous devez être administrateur' });
-    }
-    
-    const { id } = req.params;
-    const defi = await Defi.findByIdAndDelete(id);
-    if (!defi) {
-      return res.status(404).json({ message: 'Défi non trouvé' });
-    }
-    res.json({ message: 'Défi supprimé avec succès' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-};
 
 module.exports = {
   getDefiAleatoire,
   getDefisAleatoires,
-  ajouterDefi,
-  modifierDefi,
-  supprimerDefi
 };
