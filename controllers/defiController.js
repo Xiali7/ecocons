@@ -41,15 +41,9 @@ const getDefisAleatoires = async (req, res) => {
     }
 };
 
-// Fonction pour ajouter un défi
+// Fonction pour ajouter défi
 const ajouterDefi = async (req, res) => {
   try {
-    // Vérifier si l'utilisateur est administrateur (vous devez implémenter cette logique)
-    // Exemple de validation si l'utilisateur est administrateur
-    if (!req.user || !req.user.administrateur) {
-      return res.status(403).json({ message: 'Accès non autorisé, vous devez être administrateur' });
-    }
-    
     const { titre, description, difficulte } = req.body;
     const defi = new Defi({ titre, description, difficulte });
     await defi.save();
@@ -60,15 +54,9 @@ const ajouterDefi = async (req, res) => {
   }
 };
 
-// Fonction pour modifier un défi spécifique par son id
+// Fonction pour modifier défi
 const modifierDefi = async (req, res) => {
   try {
-    // Vérifier si l'utilisateur est administrateur (vous devez implémenter cette logique)
-    // Exemple de validation si l'utilisateur est administrateur
-    if (!req.user || !req.user.administrateur) {
-      return res.status(403).json({ message: 'Accès non autorisé, vous devez être administrateur' });
-    }
-    
     const { id } = req.params;
     const { titre, description, difficulte } = req.body;
     const defi = await Defi.findByIdAndUpdate(id, { titre, description, difficulte }, { new: true });
@@ -82,15 +70,9 @@ const modifierDefi = async (req, res) => {
   }
 };
 
-// Fonction pour supprimer un défi par son id
+// Fonction pour supprimer défi
 const supprimerDefi = async (req, res) => {
   try {
-    // Vérifier si l'utilisateur est administrateur (vous devez implémenter cette logique)
-    // Exemple de validation si l'utilisateur est administrateur
-    if (!req.user || !req.user.administrateur) {
-      return res.status(403).json({ message: 'Accès non autorisé, vous devez être administrateur' });
-    }
-    
     const { id } = req.params;
     const defi = await Defi.findByIdAndDelete(id);
     if (!defi) {
